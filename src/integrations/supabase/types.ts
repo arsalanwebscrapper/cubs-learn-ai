@@ -198,12 +198,15 @@ export type Database = {
           grade: string | null
           id: string
           is_active: boolean | null
+          is_login_enabled: boolean | null
           parent_email: string | null
           parent_name: string | null
           parent_phone: string | null
+          password_hash: string | null
           phone: string | null
           teacher_id: string
           updated_at: string | null
+          username: string | null
         }
         Insert: {
           age?: number | null
@@ -215,12 +218,15 @@ export type Database = {
           grade?: string | null
           id?: string
           is_active?: boolean | null
+          is_login_enabled?: boolean | null
           parent_email?: string | null
           parent_name?: string | null
           parent_phone?: string | null
+          password_hash?: string | null
           phone?: string | null
           teacher_id: string
           updated_at?: string | null
+          username?: string | null
         }
         Update: {
           age?: number | null
@@ -232,12 +238,15 @@ export type Database = {
           grade?: string | null
           id?: string
           is_active?: boolean | null
+          is_login_enabled?: boolean | null
           parent_email?: string | null
           parent_name?: string | null
           parent_phone?: string | null
+          password_hash?: string | null
           phone?: string | null
           teacher_id?: string
           updated_at?: string | null
+          username?: string | null
         }
         Relationships: [
           {
@@ -278,6 +287,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      authenticate_student: {
+        Args: { p_username: string; p_password: string }
+        Returns: Json
+      }
       get_user_role: {
         Args: { _user_id: string }
         Returns: Database["public"]["Enums"]["app_role"]
